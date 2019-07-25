@@ -1,0 +1,43 @@
+
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        Ionic Storage
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input [(ngModel)]="newItem.title"></ion-input>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label stacked>Value</ion-label>
+      <ion-input [(ngModel)]="newItem.value"></ion-input>
+    </ion-item>
+   
+    <button ion-button expand="full" (click)="addItem()">Add Item!</button>
+   
+    <ion-list #mylist>
+      <ion-list-header>
+        <ion-label>My Items</ion-label>
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let item of items">
+        <ion-item>
+          <ion-label text-wrap>
+            <h3>{{ item.title }}</h3>
+            <div ion-text color="secondary">
+              <p>{{ item.value }}</p>
+            </div>
+            <p>{{ item.modified | date:'short'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" (click)="updateItem(item)">Update</button>
+          <button ion-button  color="danger" (click)="deleteItem(item)">Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>
